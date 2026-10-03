@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Anggota | Perpustakaan Digital</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+   
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <main class="app-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Perpustakaan Digital</p>
+                <h1>Tambah Anggota</h1>
+                <p class="subtitle">Lengkapi data berikut untuk membuat keanggotaan baru.</p>
+            </div>
+        </header>
+
+        <section class="form-card">
+            <form action="#" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nama-anggota">Nama Anggota</label>
+                        <input class="form-control-custom" id="nama-anggota" type="text" name="nama_anggota" placeholder="Masukkan nama lengkap" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomor-kartu">Nomor Kartu</label>
+                        <input class="form-control-custom" id="nomor-kartu" type="text" name="nomor_kartu" placeholder="Contoh: 12350" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipe-keanggotaan">Tipe Keanggotaan</label>
+                        <select class="form-select-custom" id="tipe-keanggotaan" name="tipe_keanggotaan" required>
+                            <option value="" selected disabled>Pilih tipe keanggotaan</option>
+                            <option value="regular">Regular</option>
+                            <option value="premium">Premium</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id-card">ID Card</label>
+                        <input class="form-control-custom" id="id-card" type="text" name="cetak_id_card" placeholder="Masukkan nomor ID card" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a class="btn-secondary-custom" href="index.html">Kembali</a>
+                    <button class="btn-primary-custom" type="submit">Simpan Anggota</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
