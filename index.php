@@ -1,62 +1,51 @@
+<?php 
+include 'koneksi.php'; 
+/** @var mysqli $conn */
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Anggota</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Sistem Manajemen Perpustakaan Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
-  <div class="container mt-4">
-    <div class="custom-card-box">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">Daftar Anggota</h2>
-        <a href="tambah.html" class="btn btn-primary">Tambah</a>
-      </div>
+<body>
+    <div class="container kotak my-4">
+        <h1 class="mb-3">Sistem Manajemen Perpustakaan Digital</h1>
+        
+        <a href="tambah.php" class="btn btn-primary mb-3">+ Tambah Anggota</a>
 
-    <table class="table table-striped table-custom">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nama Anggota</th>
-      <th scope="col">Nomor Kartu</th>
-      <th scope="col">Tipe Keanggotaan</th>
-      <th scope="col">Status ID Card</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Nada Nadiya</td>
-      <td>ANG-001</td>
-      <td>Mahasiswa</td>
-      <td>Dicetak</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Az Zaky Muharram</td>
-      <td>ANG-002</td>
-      <td>Mahasiswa</td>
-      <td>Belum Dicetak</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>M Rizki Ramadhani</td>
-      <td>ANG-003</td>
-      <td>Mahasiswa</td>
-      <td>Belum Dicetak</td>
-    </tr>
-    <tr>
-        <th scope="row">4</th>
-        <td>Timothy Wilbert Jaconias Naruna</td>
-        <td>ANG-004</td>
-        <td>Mahasiswa</td>
-        <td>Belum Dicetak</td>
-    </tr>
-  </tbody>
-    </table>
+        <table class="table table-bordered table-striped bg-white">
+            <thead>
+                <tr>
+                    <th>Nama Anggota</th>
+                    <th>Nomor Kartu</th>
+                    <th>Tipe Keanggotaan</th>
+                    <th>Status ID Card</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $query = mysqli_query($conn, "SELECT * FROM anggota");
+                while ($row = mysqli_fetch_assoc($query)) {
+                ?>
+                    <tr>
+                        <td><?= $row['nama_anggota']; ?></td>
+                        <td><?= $row['nomor_kartu']; ?></td>
+                        <td><?= $row['tipe_keanggotaan']; ?></td>
+                        <td><?= $row['status_id_card']; ?></td>
+                        <td>
+                            <a href="edit.php?nomor_kartu=<?= $row['nomor_kartu']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="hapus.php?nomor_kartu=<?= $row['nomor_kartu']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
-  </div>
 </body>
 </html>

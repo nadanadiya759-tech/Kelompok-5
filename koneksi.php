@@ -1,6 +1,12 @@
 <?php
-$koneksi = mysqli_connect("localhost", "root", "", "db_digital_library");
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "db_digital_library";
 
-if (!$koneksi) {
-    die("Koneksi database gagal: " . mysqli_connect_error());
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Koneksi gagal: " . mysqli_connect_error());
 }
+?>

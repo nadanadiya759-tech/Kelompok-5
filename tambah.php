@@ -1,56 +1,62 @@
+<?php 
+include 'koneksi.php'; 
+/** @var mysqli $conn */
+
+if (isset($_POST['submit'])) {
+    $nomor = $_POST['nomor_kartu'];
+    $nama = $_POST['nama_anggota'];
+    $tipe = $_POST['tipe_keanggotaan'];
+    $id_card = $_POST['status_id_card'];
+
+    $query = "INSERT INTO anggota (nomor_kartu, nama_anggota, tipe_keanggotaan, status_id_card) 
+              VALUES ('$nomor', '$nama', '$tipe', '$id_card')";
+    
+    if (mysqli_query($conn, $query)) {
+        header("Location: index.php");
+        exit();
+    } else {
+        echo "Gagal menambah data: " . mysqli_error($conn);
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Anggota</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Tambah Data Anggota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body class="container mt-4">
+    <div class="custom-card-box">
+        <h1 class="mb-4">Tambah Data Anggota</h1>
 
-    <div class="container mt-4">
-        <div class="custom-card-box">
-            <h2 class="mb-4">Tambah Anggota</h2>
+        <form action="" method="POST"> 
+            <div class="mb-3">
+                <label class="form-label">NIM</label>
+                <input type="text" class="form-control" name="nomor_kartu" required>
+            </div>
 
-            <form action="" method="post">
-                <div class="mb-3">
-                    <label for="nama" class="form-label">Nama Anggota</label>
-                    <input type="text" class="form-control" id="nama" name="nama" required>
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Nama Anggota</label>
+                <input type="text" class="form-control" name="nama_anggota" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Tipe Keanggotaan</label>
+                <input type="text" class="form-control" name="tipe_keanggotaan" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Status ID Card</label>
+                <input type="text" class="form-control" name="status_id_card" required>
+            </div>
 
-                <div class="mb-3">
-                    <label for="no_kartu" class="form-label">Nomor Kartu</label>
-                    <input type="text" class="form-control" id="no_kartu" name="no_kartu" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="tipe" class="form-label">Tipe Keanggotaan</label>
-                    <select class="form-select" id="tipe" name="tipe" required>
-                        <option value="" disabled selected>Pilih tipe</option>
-                        <option value="Mahasiswa">Mahasiswa</option>
-                        <option value="Dosen">Dosen</option>
-                        <option value="Staff">Staff</option>
-                        <option value="Umum">Umum</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="status_id_card" class="form-label">Status ID Card</label>
-                    <select class="form-select" id="status_id_card" name="status_id_card" required>
-                        <option value="" disabled selected>Pilih status</option>
-                        <option value="Dicetak">Dicetak</option>
-                        <option value="Belum Dicetak">Belum Dicetak</option>
-                    </select>
-                </div>
-
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a href="index.html" class="btn btn-secondary">Kembali</a>
-                </div>
-            </form>
-        </div>
+            <button type="submit" name="submit" class="btn btn-success">Submit</button>
+            <a href="index.php" class="btn btn-secondary">Batal</a>
+        </form>
     </div>
-
 </body>
 </html>
